@@ -43,7 +43,7 @@ Self-supervised pre-training has gained increasing prominence for learning trans
 
    All downstream tasks use five-fold cross-validation.
 
-3. Run the evaluation demo with:
+3. Run the evaluation with:
 
    ```bash
    python ./evaluation_anaus.py --data_path <data_path> --ckpt_path <pre_trained_anaus_path>
