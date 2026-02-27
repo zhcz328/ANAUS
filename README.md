@@ -2,13 +2,13 @@
 
 ## Abstract
 
-Self-supervised pre-training has gained increasing prominence for learning transferable representations in medical imaging, yet existing methods for ultrasound (US) images operate at the image or frame level, overlooking the anatomical context for clinical-aligned representation learning. We propose **AnaUS**, an **Ana**tomy-Anchored **U**ltra**S**ound Self-Supervision framework that shifts representation learning from generic visual regions to clinically meaningful anatomical structures. Utilizing a learnable latent prompt engine alongside a one-time domain adaptation on existing public image–mask pairs, we empower the LP-SAM module to achieve annotation-free anatomy delineation at scale. Building upon this anatomical grounding, AnaUS integrates two synergistic learning mechanisms: (i) inter-view semantics-aware anatomy-separating alignment, and (ii) contextual core-region prediction. Extensive evaluations on six public datasets demonstrate that AnaUS consistently outperforms current state-of-the-art methods while maintaining the computational efficiency essential for clinical deployment.
+Self-supervised pre-training has gained increasing prominence for learning transferable representations in medical imaging, yet existing methods for ultrasound (US) images operate at the image or frame level, overlooking the anatomical context for clinical-aligned representation learning. We propose **ANAUS**, an **Ana**tomy-Anchored **U**ltra**S**ound Self-Supervision framework that shifts representation learning from generic visual regions to clinically meaningful anatomical structures. Utilizing a learnable latent prompt engine alongside a one-time domain adaptation on existing public image–mask pairs, we empower the LP-SAM module to achieve annotation-free anatomy delineation at scale. Building upon this anatomical grounding, ANAUS integrates two synergistic learning mechanisms: (i) inter-view semantics-aware anatomy-separating alignment, and (ii) contextual core-region prediction. Extensive evaluations on six public datasets demonstrate that ANAUS consistently outperforms current state-of-the-art methods while maintaining the computational efficiency essential for clinical deployment.
 
-![AnaUS Framework](./figs/ANAUS.png)
+![ANAUS Framework](./figs/ANAUS.png)
 
 ## 🔨 PostScript
 
-😄 This project is the PyTorch implementation of AnaUS.
+😄 This project is the PyTorch implementation of ANAUS.
 
 😆 Our experimental platform is configured with two *RTX 4090* GPUs (24 GB VRAM each).
 
@@ -33,9 +33,9 @@ Self-supervised pre-training has gained increasing prominence for learning trans
    pip install -r requirements.txt
    ```
 
-## 🐾 AnaUS Evaluation
+## 🐾 ANAUS Evaluation
 
-1. Load the pre-trained AnaUS weights from `./checkpoint/pre-trained-anaus.pth`.
+1. Load the pre-trained ANAUS weights from `./checkpoint/pre-trained-anaus.pth`.
 
 2. Download the downstream evaluation datasets:
    - **Classification**: [POCUS](https://drive.google.com/file/d/1w7FrwqQ09VjwtTcZL5M0hZnW3Oly9Buv/view?usp=drive_link), BUSI
@@ -109,7 +109,7 @@ python ./SAM/train_auto_prompter.py --sam_ckpt <finetuned_sam.pth> --load_auto_p
 
 > **Note:** Both LP-SAM stages are one-time procedures and are excluded from subsequent SSL pre-training iterations.
 
-## 🐾 AnaUS Pre-training
+## 🐾 ANAUS Pre-training
 
 1. Download the SSL pre-training datasets ([Butterfly](https://www.butterflynetwork.com/) and [CAMUS](http://camus.creatis.insa-lyon.fr/challenge/)), then generate anatomical masks via LP-SAM inference. Organize the directory as follows:
 
