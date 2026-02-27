@@ -38,7 +38,7 @@ def run_task(config):
 def main():
     args = parser.parse_args()
     cfg = args.cfg if args.cfg[-5:] == '.yaml' else args.cfg + '.yaml'
-    config_path = os.path.join(os.getcwd(), 'config', cfg)
+    config_path = os.path.join(os.getcwd(), 'configs', cfg)
     assert os.path.exists(config_path), f"Could not find {cfg} in configs directory!"
     with open(config_path, 'r') as f:
         config = yaml.safe_load(f)
