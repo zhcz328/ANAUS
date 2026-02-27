@@ -8,7 +8,7 @@ import torch
 
 from functools import partial
 
-from SAM.models.modeling import ImageEncoderViT, MaskDecoder, PromptEncoder, Sam, TwoWayTransformer, AutoPrompter
+from LPSAM.models.modeling import ImageEncoderViT, MaskDecoder, PromptEncoder, Sam, TwoWayTransformer, AutoPrompter
 
 from torch.nn import functional as F
 

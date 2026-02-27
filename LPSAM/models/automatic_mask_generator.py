@@ -10,8 +10,8 @@ from torchvision.ops.boxes import batched_nms, box_area  # type: ignore
 
 from typing import Any, Dict, List, Optional, Tuple
 
-from SAM.models.modeling import Sam
-from SAM.models.utils.amg import (
+from LPSAM.models.modeling import Sam
+from LPSAM.models.utils.amg import (
     MaskData,
     area_from_rle,
     batch_iterator,

@@ -8,13 +8,13 @@ import torch
 from torch.utils.tensorboard import SummaryWriter
 import time
 import random
-from SAM.utils.config import get_config
-from SAM.utils.evaluation import get_eval
+from LPSAM.utils.config import get_config
+from LPSAM.utils.evaluation import get_eval
 
-from SAM.models.build_sam import sam_model_registry
-from SAM.utils.data_us import JointTransform2D, ImageToImage2D
-from SAM.utils.loss_functions.sam_loss import get_criterion
-from utils.generate_prompts import get_click_prompt
+from LPSAM.models.build_sam import sam_model_registry
+from LPSAM.utils.data_us import JointTransform2D, ImageToImage2D
+from LPSAM.utils.loss_functions.sam_loss import get_criterion
+from LPSAM.utils.generate_prompts import get_click_prompt
 
 
 def main():
@@ -32,7 +32,7 @@ def main():
                         help='select the vit model for the image encoder of sam')
     parser.add_argument('--sam_ckpt', type=str, default=None,
                         help='Pretrained checkpoint of SAM')
-    parser.add_argument('--batch_size', type=int, default=8,
+    parser.add_argument('--batch_size', type=int, default=32,
                         help='batch_size per gpu')  # SAMed is 12 bs with 2n_gpu and lr is 0.005
     parser.add_argument('--n_gpu', type=int, default=1, help='total gpu')
     parser.add_argument('--base_lr', type=float, default=0.0005,
@@ -110,6 +110,11 @@ def main():
 
     criterion = get_criterion(modelname=args.modelname, opt=opt)
 
+    for name, param in model.named_parameters():
+        param.requires_grad = False
+    model.auto_prompter.requires_grad_()
+    model.mask_decoder.requires_grad_()
+
     pytorch_total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print("Total_params: {}".format(pytorch_total_params))
 
@@ -130,7 +135,7 @@ def main():
             # -------------------------------------------------------- forward --------------------------------------------------------
             pred = model(imgs, pt, bbox)
             train_loss = criterion(pred, masks)
-
+            print(train_loss)
             # -------------------------------------------------------- backward -------------------------------------------------------
             optimizer.zero_grad()
             train_loss.backward()

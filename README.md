@@ -96,7 +96,7 @@ Download the checkpoint for SAM (Segment Anything Model): [ViT-B](https://dl.fba
 Fine-tune the SAM adapter for the ultrasound domain:
 
 ```bash
-python ./LP-SAM/only_train_sam.py --sam_ckpt <sam_vit_b.pth>
+python ./LPSAM/only_train_sam.py --sam_ckpt <sam_vit_b.pth>
 ```
 
 ### Stage 2: Latent Prompt Engine Training
@@ -104,7 +104,7 @@ python ./LP-SAM/only_train_sam.py --sam_ckpt <sam_vit_b.pth>
 Fine-tune the latent prompt engine with SAM frozen:
 
 ```bash
-python ./LP-SAM/train_lpe.py --sam_ckpt <finetuned_sam.pth> --load_auto_prompter
+python ./LPSAM/train_lpe.py --sam_ckpt <finetuned_sam.pth> --load_auto_prompter
 ```
 
 > **Note:** Both LP-SAM stages are one-time procedures and are excluded from subsequent SSL pre-training iterations.
