@@ -6,6 +6,10 @@ Self-supervised pre-training has gained increasing prominence for learning trans
 
 ![ANAUS Framework](./figs/ANAUS.png)
 
+🎉 Accepted to MICCAI 2026. This repository provides the official PyTorch implementation of Anatomy-Anchored Self-Supervision: Distilling Vision Foundation Models for Invariant Ultrasound Representation.
+
+If you find this repository useful, please consider giving it a ⭐!
+
 ## 🔨 PostScript
 
 😄 This project is the PyTorch implementation of ANAUS.
